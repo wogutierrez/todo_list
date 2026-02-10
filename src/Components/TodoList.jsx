@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
-import './TodoList.css';
+import React, { useState } from "react";
+import "./TodoList.css";
 
 const TodoList = () => {
-  
+  const [todos, setTodos] = useState([]);
+  const [headinginput, setHeadingInput] = useState("");
+  const [listInput, setlistInputs] = useState({});
+
+  const handleAddToDo = () => {
+    if (headinginputs.trim() !== "") {
+      setTodos = [...todos, { headings: headinginput, list: [] }];
+      setHeadingInput = "";
+    }
+  };
 
   return (
     <>
@@ -13,14 +22,11 @@ const TodoList = () => {
             type="text"
             className="heading-input"
             placeholder="Enter heading"
-            
           />
           <button className="add-list-button">Add Heading</button>
         </div>
       </div>
-      <div className="todo_main">
-        
-      </div>
+      <div className="todo_main"></div>
     </>
   );
 };
