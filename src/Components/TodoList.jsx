@@ -3,13 +3,13 @@ import "./TodoList.css";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
-  const [headinginput, setHeadingInput] = useState("");
+  const [headingInput, setHeadingInput] = useState("");
   const [listInput, setlistInputs] = useState({});
 
   const handleAddToDo = () => {
-    if (headinginputs.trim() !== "") {
-      setTodos = [...todos, { headings: headinginput, list: [] }];
-      setHeadingInput = "";
+    if (headingInput.trim() !== "") {
+      setTodos([...todos, { headings: headinginput, list: [] }]);
+      setHeadingInput("");
     }
   };
 
@@ -22,8 +22,13 @@ const TodoList = () => {
             type="text"
             className="heading-input"
             placeholder="Enter heading"
+            value={headingInput}
+            onChange={(e) => setHeadingInput(e.target.value)}
           />
-          <button className="add-list-button">Add Heading</button>
+
+          <button className="add-list-button" onClick={handleAddToDo}>
+            Add Heading
+          </button>
         </div>
       </div>
       <div className="todo_main"></div>
