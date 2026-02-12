@@ -8,10 +8,12 @@ const TodoList = () => {
 
   const handleAddToDo = () => {
     if (headingInput.trim() !== "") {
-      setTodos([...todos, { headings: headinginput, list: [] }]);
+      setTodos([...todos, { headings: headingInput, list: [] }]);
       setHeadingInput("");
     }
   };
+
+  const deleteToDo = (index) => {};
 
   return (
     <>
@@ -31,7 +33,21 @@ const TodoList = () => {
           </button>
         </div>
       </div>
-      <div className="todo_main"></div>
+      <div className="todo_main">
+        {todos.map((todo, index) => (
+          <div key={index} className="todo-card">
+            <div className="heading_todo">
+              <h1>{todo.headings}</h1>
+              <button
+                className="delete-button-heading"
+                onClick={() => deleteToDo(index)}
+              >
+                Delete Heading
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
