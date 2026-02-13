@@ -4,16 +4,34 @@ import "./TodoList.css";
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [headingInput, setHeadingInput] = useState("");
-  const [listInput, setlistInputs] = useState({});
+  const [listInputs, setListInputs] = useState({}); // fixed setter name
 
   const handleAddToDo = () => {
     if (headingInput.trim() !== "") {
-      setTodos([...todos, { headings: headingInput, list: [] }]);
+      setTodos([...todos, { heading: headingInput, lists: [] }]); // consistent property names
       setHeadingInput("");
     }
   };
 
-  const deleteToDo = (index) => {};
+  const handleListInputChange = (index, value) => {
+    setListInputs({ ...listInputs, [index]: value });
+  };
+
+  const handleAddList = (index) => {
+    if (listInputs[index] && listInputs[index].trim() !== "") {
+      const newTodos = [...todos];
+      newTodos[index].lists.push(listInputs[index]); // consistent property name
+      setTodos(newTodos);
+      setListInputs({ ...listInputs, [index]: "" });
+    }
+  };
+
+  const deleteToDo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  };
+
+  const handleDeleteTodo = () => {};
 
   return (
     <>
@@ -27,20 +45,20 @@ const TodoList = () => {
             value={headingInput}
             onChange={(e) => setHeadingInput(e.target.value)}
           />
-
           <button className="add-list-button" onClick={handleAddToDo}>
             Add Heading
           </button>
         </div>
       </div>
+
       <div className="todo_main">
         {todos.map((todo, index) => (
-          <div key={index} className="todo-card">
+          <div className="todo-card" key={index}>
             <div className="heading_todo">
-              <h1>{todo.headings}</h1>
+              <h3>{todo.heading}</h3>
               <button
                 className="delete-button-heading"
-                onClick={() => deleteToDo(index)}
+                onClick={() => handleDeleteTodo(index)}
               >
                 Delete Heading
               </button>
