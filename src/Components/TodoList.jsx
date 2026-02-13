@@ -62,6 +62,16 @@ const TodoList = () => {
               >
                 Delete Heading
               </button>
+              <div className="add_list">
+                <input
+                  type="text"
+                  className="list_inputs"
+                  placeholder="add list"
+                  value={listInputs[index] || ""}
+                  onChange={(e) => handleListInputChange(index, e.target.value)}
+                />
+                <h3>list</h3>
+              </div>
             </div>
           </div>
         ))}
